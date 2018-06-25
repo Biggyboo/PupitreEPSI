@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Workshop4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Batiment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="numRue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rue" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ville" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="codePostal" Type="int" Nullable="false" />
+          <Property Name="campus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Campus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ville" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Classe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nbEleves" Type="int" Nullable="false" />
+          <Property Name="ecole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="salle" Type="int" Nullable="false" />
+          <Property Name="heureDebut" Type="time" Precision="1" Nullable="false" />
+          <Property Name="heureFin" Type="time" Precision="1" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ecole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="intitulé" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="nbClasses" Type="int" Nullable="false" />
+          <Property Name="campus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="etage" Type="int" Nullable="false" />
+          <Property Name="intitulé" Type="nvarchar" MaxLength="50" />
+          <Property Name="numéro" Type="int" Nullable="false" />
+          <Property Name="bâtiment" Type="int" Nullable="false" />
+          <Property Name="capacité" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salle_Equipement">
+          <Key>
+            <PropertyRef Name="idSalle" />
+            <PropertyRef Name="idEquipement" />
+          </Key>
+          <Property Name="idSalle" Type="int" Nullable="false" />
+          <Property Name="idEquipement" Type="int" Nullable="false" />
+          <Property Name="nbEquipement" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Batiment_Campus">
+          <End Role="Campus" Type="Self.Campus" Multiplicity="1" />
+          <End Role="Batiment" Type="Self.Batiment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Batiment">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classe_Ecole">
+          <End Role="Ecole" Type="Self.Ecole" Multiplicity="1" />
+          <End Role="Classe" Type="Self.Classe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ecole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Classe">
+              <PropertyRef Name="ecole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cours_Salle">
+          <End Role="Salle" Type="Self.Salle" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salle">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="salle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ecole_Ecole">
+          <End Role="Campus" Type="Self.Campus" Multiplicity="1" />
+          <End Role="Ecole" Type="Self.Ecole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ecole">
+              <PropertyRef Name="campus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salle_Batiment">
+          <End Role="Batiment" Type="Self.Batiment" Multiplicity="1" />
+          <End Role="Salle" Type="Self.Salle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batiment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Salle">
+              <PropertyRef Name="bâtiment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salle_Equipement_Equipement">
+          <End Role="Equipement" Type="Self.Equipement" Multiplicity="1" />
+          <End Role="Salle_Equipement" Type="Self.Salle_Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipement">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Salle_Equipement">
+              <PropertyRef Name="idEquipement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salle_Equipement_Salle">
+          <End Role="Salle" Type="Self.Salle" Multiplicity="1" />
+          <End Role="Salle_Equipement" Type="Self.Salle_Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salle">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Salle_Equipement">
+              <PropertyRef Name="idSalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Workshop4ModelStoreContainer">
+          <EntitySet Name="Batiment" EntityType="Self.Batiment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campus" EntityType="Self.Campus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classe" EntityType="Self.Classe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cours" EntityType="Self.Cours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ecole" EntityType="Self.Ecole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipement" EntityType="Self.Equipement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salle" EntityType="Self.Salle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salle_Equipement" EntityType="Self.Salle_Equipement" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Batiment_Campus" Association="Self.FK_Batiment_Campus">
+            <End Role="Campus" EntitySet="Campus" />
+            <End Role="Batiment" EntitySet="Batiment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classe_Ecole" Association="Self.FK_Classe_Ecole">
+            <End Role="Ecole" EntitySet="Ecole" />
+            <End Role="Classe" EntitySet="Classe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cours_Salle" Association="Self.FK_Cours_Salle">
+            <End Role="Salle" EntitySet="Salle" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ecole_Ecole" Association="Self.FK_Ecole_Ecole">
+            <End Role="Campus" EntitySet="Campus" />
+            <End Role="Ecole" EntitySet="Ecole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salle_Batiment" Association="Self.FK_Salle_Batiment">
+            <End Role="Batiment" EntitySet="Batiment" />
+            <End Role="Salle" EntitySet="Salle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salle_Equipement_Equipement" Association="Self.FK_Salle_Equipement_Equipement">
+            <End Role="Equipement" EntitySet="Equipement" />
+            <End Role="Salle_Equipement" EntitySet="Salle_Equipement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salle_Equipement_Salle" Association="Self.FK_Salle_Equipement_Salle">
+            <End Role="Salle" EntitySet="Salle" />
+            <End Role="Salle_Equipement" EntitySet="Salle_Equipement" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Workshop4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Batiment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="numRue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ville" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codePostal" Type="Int32" Nullable="false" />
+          <Property Name="campus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Campu" Relationship="Self.FK_Batiment_Campus" FromRole="Batiment" ToRole="Campus" />
+          <NavigationProperty Name="Salles" Relationship="Self.FK_Salle_Batiment" FromRole="Batiment" ToRole="Salle" />
+        </EntityType>
+        <EntityType Name="Campu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ville" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Batiment" Relationship="Self.FK_Batiment_Campus" FromRole="Campus" ToRole="Batiment" />
+          <NavigationProperty Name="Ecoles" Relationship="Self.FK_Ecole_Ecole" FromRole="Campus" ToRole="Ecole" />
+        </EntityType>
+        <EntityType Name="Classe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nbEleves" Type="Int32" Nullable="false" />
+          <Property Name="ecole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ecole1" Relationship="Self.FK_Classe_Ecole" FromRole="Classe" ToRole="Ecole" />
+        </EntityType>
+        <EntityType Name="Cour">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="salle" Type="Int32" Nullable="false" />
+          <Property Name="heureDebut" Type="Time" Nullable="false" Precision="1" />
+          <Property Name="heureFin" Type="Time" Nullable="false" Precision="1" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Salle1" Relationship="Self.FK_Cours_Salle" FromRole="Cours" ToRole="Salle" />
+        </EntityType>
+        <EntityType Name="Ecole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="intitulé" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nbClasses" Type="Int32" Nullable="false" />
+          <Property Name="campus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Campu" Relationship="Self.FK_Ecole_Ecole" FromRole="Ecole" ToRole="Campus" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK_Classe_Ecole" FromRole="Ecole" ToRole="Classe" />
+        </EntityType>
+        <EntityType Name="Equipement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Salle_Equipement" Relationship="Self.FK_Salle_Equipement_Equipement" FromRole="Equipement" ToRole="Salle_Equipement" />
+        </EntityType>
+        <EntityType Name="Salle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="etage" Type="Int32" Nullable="false" />
+          <Property Name="intitulé" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="numéro" Type="Int32" Nullable="false" />
+          <Property Name="bâtiment" Type="Int32" Nullable="false" />
+          <Property Name="capacité" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Batiment" Relationship="Self.FK_Salle_Batiment" FromRole="Salle" ToRole="Batiment" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_Cours_Salle" FromRole="Salle" ToRole="Cours" />
+          <NavigationProperty Name="Salle_Equipement" Relationship="Self.FK_Salle_Equipement_Salle" FromRole="Salle" ToRole="Salle_Equipement" />
+        </EntityType>
+        <EntityType Name="Salle_Equipement">
+          <Key>
+            <PropertyRef Name="idSalle" />
+            <PropertyRef Name="idEquipement" />
+          </Key>
+          <Property Name="idSalle" Type="Int32" Nullable="false" />
+          <Property Name="idEquipement" Type="Int32" Nullable="false" />
+          <Property Name="nbEquipement" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipement" Relationship="Self.FK_Salle_Equipement_Equipement" FromRole="Salle_Equipement" ToRole="Equipement" />
+          <NavigationProperty Name="Salle" Relationship="Self.FK_Salle_Equipement_Salle" FromRole="Salle_Equipement" ToRole="Salle" />
+        </EntityType>
+        <Association Name="FK_Batiment_Campus">
+          <End Role="Campus" Type="Self.Campu" Multiplicity="1" />
+          <End Role="Batiment" Type="Self.Batiment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Batiment">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salle_Batiment">
+          <End Role="Batiment" Type="Self.Batiment" Multiplicity="1" />
+          <End Role="Salle" Type="Self.Salle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batiment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Salle">
+              <PropertyRef Name="bâtiment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ecole_Ecole">
+          <End Role="Campus" Type="Self.Campu" Multiplicity="1" />
+          <End Role="Ecole" Type="Self.Ecole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ecole">
+              <PropertyRef Name="campus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classe_Ecole">
+          <End Role="Ecole" Type="Self.Ecole" Multiplicity="1" />
+          <End Role="Classe" Type="Self.Classe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ecole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Classe">
+              <PropertyRef Name="ecole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cours_Salle">
+          <End Role="Salle" Type="Self.Salle" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salle">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="salle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salle_Equipement_Equipement">
+          <End Role="Equipement" Type="Self.Equipement" Multiplicity="1" />
+          <End Role="Salle_Equipement" Type="Self.Salle_Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipement">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Salle_Equipement">
+              <PropertyRef Name="idEquipement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salle_Equipement_Salle">
+          <End Role="Salle" Type="Self.Salle" Multiplicity="1" />
+          <End Role="Salle_Equipement" Type="Self.Salle_Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salle">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Salle_Equipement">
+              <PropertyRef Name="idSalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Workshop4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Batiments" EntityType="Self.Batiment" />
+          <EntitySet Name="Campus" EntityType="Self.Campu" />
+          <EntitySet Name="Classes" EntityType="Self.Classe" />
+          <EntitySet Name="Cours" EntityType="Self.Cour" />
+          <EntitySet Name="Ecoles" EntityType="Self.Ecole" />
+          <EntitySet Name="Equipements" EntityType="Self.Equipement" />
+          <EntitySet Name="Salles" EntityType="Self.Salle" />
+          <EntitySet Name="Salle_Equipement" EntityType="Self.Salle_Equipement" />
+          <AssociationSet Name="FK_Batiment_Campus" Association="Self.FK_Batiment_Campus">
+            <End Role="Campus" EntitySet="Campus" />
+            <End Role="Batiment" EntitySet="Batiments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salle_Batiment" Association="Self.FK_Salle_Batiment">
+            <End Role="Batiment" EntitySet="Batiments" />
+            <End Role="Salle" EntitySet="Salles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ecole_Ecole" Association="Self.FK_Ecole_Ecole">
+            <End Role="Campus" EntitySet="Campus" />
+            <End Role="Ecole" EntitySet="Ecoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classe_Ecole" Association="Self.FK_Classe_Ecole">
+            <End Role="Ecole" EntitySet="Ecoles" />
+            <End Role="Classe" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cours_Salle" Association="Self.FK_Cours_Salle">
+            <End Role="Salle" EntitySet="Salles" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salle_Equipement_Equipement" Association="Self.FK_Salle_Equipement_Equipement">
+            <End Role="Equipement" EntitySet="Equipements" />
+            <End Role="Salle_Equipement" EntitySet="Salle_Equipement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salle_Equipement_Salle" Association="Self.FK_Salle_Equipement_Salle">
+            <End Role="Salle" EntitySet="Salles" />
+            <End Role="Salle_Equipement" EntitySet="Salle_Equipement" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Workshop4ModelStoreContainer" CdmEntityContainer="Workshop4Entities">
+          <EntitySetMapping Name="Batiments">
+            <EntityTypeMapping TypeName="Workshop4Model.Batiment">
+              <MappingFragment StoreEntitySet="Batiment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="numRue" ColumnName="numRue" />
+                <ScalarProperty Name="rue" ColumnName="rue" />
+                <ScalarProperty Name="ville" ColumnName="ville" />
+                <ScalarProperty Name="codePostal" ColumnName="codePostal" />
+                <ScalarProperty Name="campus" ColumnName="campus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Campus">
+            <EntityTypeMapping TypeName="Workshop4Model.Campu">
+              <MappingFragment StoreEntitySet="Campus">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ville" ColumnName="ville" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="Workshop4Model.Classe">
+              <MappingFragment StoreEntitySet="Classe">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nbEleves" ColumnName="nbEleves" />
+                <ScalarProperty Name="ecole" ColumnName="ecole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cours">
+            <EntityTypeMapping TypeName="Workshop4Model.Cour">
+              <MappingFragment StoreEntitySet="Cours">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="salle" ColumnName="salle" />
+                <ScalarProperty Name="heureDebut" ColumnName="heureDebut" />
+                <ScalarProperty Name="heureFin" ColumnName="heureFin" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ecoles">
+            <EntityTypeMapping TypeName="Workshop4Model.Ecole">
+              <MappingFragment StoreEntitySet="Ecole">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="intitulé" ColumnName="intitulé" />
+                <ScalarProperty Name="nbClasses" ColumnName="nbClasses" />
+                <ScalarProperty Name="campus" ColumnName="campus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipements">
+            <EntityTypeMapping TypeName="Workshop4Model.Equipement">
+              <MappingFragment StoreEntitySet="Equipement">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salles">
+            <EntityTypeMapping TypeName="Workshop4Model.Salle">
+              <MappingFragment StoreEntitySet="Salle">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="etage" ColumnName="etage" />
+                <ScalarProperty Name="intitulé" ColumnName="intitulé" />
+                <ScalarProperty Name="numéro" ColumnName="numéro" />
+                <ScalarProperty Name="bâtiment" ColumnName="bâtiment" />
+                <ScalarProperty Name="capacité" ColumnName="capacité" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salle_Equipement">
+            <EntityTypeMapping TypeName="Workshop4Model.Salle_Equipement">
+              <MappingFragment StoreEntitySet="Salle_Equipement">
+                <ScalarProperty Name="idSalle" ColumnName="idSalle" />
+                <ScalarProperty Name="idEquipement" ColumnName="idEquipement" />
+                <ScalarProperty Name="nbEquipement" ColumnName="nbEquipement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

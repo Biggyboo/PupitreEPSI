@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7950eeec05f94a1aa0abecb6e35d5bfe" Name="Diagram1">
+        <EntityTypeShape EntityType="Workshop4Model.Batiment" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Workshop4Model.Campu" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Workshop4Model.Classe" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Workshop4Model.Cour" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Workshop4Model.Ecole" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Workshop4Model.Equipement" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Workshop4Model.Salle" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Workshop4Model.Salle_Equipement" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Workshop4Model.FK_Batiment_Campus" ManuallyRouted="false" />
+        <AssociationConnector Association="Workshop4Model.FK_Salle_Batiment" ManuallyRouted="false" />
+        <AssociationConnector Association="Workshop4Model.FK_Ecole_Ecole" ManuallyRouted="false" />
+        <AssociationConnector Association="Workshop4Model.FK_Classe_Ecole" ManuallyRouted="false" />
+        <AssociationConnector Association="Workshop4Model.FK_Cours_Salle" ManuallyRouted="false" />
+        <AssociationConnector Association="Workshop4Model.FK_Salle_Equipement_Equipement" ManuallyRouted="false" />
+        <AssociationConnector Association="Workshop4Model.FK_Salle_Equipement_Salle" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
