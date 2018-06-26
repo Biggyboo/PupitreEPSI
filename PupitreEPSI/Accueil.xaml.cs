@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace PupitreEPSI
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour Accueil.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Accueil : Page
     {
-        public MainWindow()
+        public Accueil()
         {
             InitializeComponent();
-            NavigationService nav = Frame.NavigationService;
-            nav.Navigate(new Accueil());
+            HEP.Source = new BitmapImage(new Uri("HEP.jpg", UriKind.Relative));
         }
     }
 }
