@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace PupitreEPSI
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour Ecole.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Ecole : Page
     {
-        public MainWindow()
+        public Ecole()
         {
             InitializeComponent();
-            NavigationService nav = Frame.NavigationService;
-            nav.Navigate(new Accueil());
         }
     }
 }
