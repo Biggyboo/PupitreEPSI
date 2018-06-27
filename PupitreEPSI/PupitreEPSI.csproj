@@ -96,6 +96,8 @@
     <Compile Include="Promo.xaml.cs">
       <DependentUpon>Promo.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
