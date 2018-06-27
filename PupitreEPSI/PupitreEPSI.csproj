@@ -58,6 +58,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Administration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ecole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,6 +72,9 @@
     </Page>
     <Compile Include="Accueil.xaml.cs">
       <DependentUpon>Accueil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration.xaml.cs">
+      <DependentUpon>Administration.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -80,8 +87,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Promo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Promo.xaml.cs">
+      <DependentUpon>Promo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,6 +123,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HEP.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="epsi-logo-hd.jpg" />
+    <Resource Include="Ifag_logo.png" />
+    <Resource Include="Logo-OSS.png" />
+    <Resource Include="Logo-WIS.png" />
+    <Resource Include="logo_idrac2.png" />
+    <Resource Include="SUP-DE-COM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="igefi.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

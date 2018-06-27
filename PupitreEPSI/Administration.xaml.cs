@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace PupitreEPSI
 {
     /// <summary>
-    /// Logique d'interaction pour Ecole.xaml
+    /// Logique d'interaction pour Administration.xaml
     /// </summary>
-    public partial class Ecole : Page
+    public partial class Administration : Page
     {
-        public Ecole()
+        public Administration()
         {
             InitializeComponent();
             EPSI.Source = new BitmapImage(new Uri("epsi-logo-hd.jpg", UriKind.Relative));
@@ -31,41 +30,6 @@ namespace PupitreEPSI
             OSS.Source = new BitmapImage(new Uri("Logo-OSS.png", UriKind.Relative));
             SUP.Source = new BitmapImage(new Uri("SUP-DE-COM.png", UriKind.Relative));
             WIS.Source = new BitmapImage(new Uri("Logo-WIS.png", UriKind.Relative));
-        }
-
-        private void EPSI_button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IDRAC_button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IFAG_button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void IGEFI_button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OSS_button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SUP_button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void WIS_button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

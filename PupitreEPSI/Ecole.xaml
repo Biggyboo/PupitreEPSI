@@ -7,21 +7,58 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Ecole">
-
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="260" />
+            <Setter Property="Height" Value="100" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="{x:Null}"/>
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </Page.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
-
+        <Button Grid.Column="0" Grid.Row="1" Name="EPSI_button" Click="EPSI_button_Click">
+            <Image Name="EPSI" />
+        </Button>
+        <Button Grid.Column="1" Grid.Row="1" Name="IDRAC_button" Click="IDRAC_button_Click">
+            <Image Name="IDRAC"/>
+        </Button>
+        <Button Grid.Column="0" Grid.Row="3" Name="IFAG_button" Click="IFAG_button_Click">
+            <Image Name="IFAG"/>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="3" Name="IGEFI_button" Click="IGEFI_button_Click">
+            <Image Name="IGEFI"/>
+        </Button>
+        <Button Grid.Column="0" Grid.Row="5" Name="OSS_button" Click="OSS_button_Click">
+            <Image Name="OSS"/>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="5" Name="SUP_button" Click="SUP_button_Click">
+            <Image Name="SUP"/>
+        </Button>
+        <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Name="WIS_button" Click="WIS_button_Click">
+            <Image Name="WIS"/>
+        </Button>
     </Grid>
 </Page>
