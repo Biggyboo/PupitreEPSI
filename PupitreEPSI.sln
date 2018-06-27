@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PupitreEPSI", "PupitreEPSI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PupitreEPSI_DAL", "PupitreEPSI_DAL\PupitreEPSI_DAL.csproj", "{1FAE9ECE-16BB-4263-A842-68C6220DE416}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PupitreEPSI_BO", "PupitreEPSI_BO\PupitreEPSI_BO.csproj", "{346AE6C8-81F7-431D-A423-8C07E561B642}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1FAE9ECE-16BB-4263-A842-68C6220DE416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FAE9ECE-16BB-4263-A842-68C6220DE416}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FAE9ECE-16BB-4263-A842-68C6220DE416}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346AE6C8-81F7-431D-A423-8C07E561B642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346AE6C8-81F7-431D-A423-8C07E561B642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346AE6C8-81F7-431D-A423-8C07E561B642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346AE6C8-81F7-431D-A423-8C07E561B642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
