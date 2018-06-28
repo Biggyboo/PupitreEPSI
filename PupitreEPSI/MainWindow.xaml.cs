@@ -39,6 +39,12 @@ namespace PupitreEPSI
 
         }
 
+        private void Ecole_Enter(object sender, RoutedEventArgs e)
+        {
+            
+            
+        }
+
         private void Visiteur_Click(object sender, RoutedEventArgs e)
         {
 

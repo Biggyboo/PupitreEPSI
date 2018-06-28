@@ -17,9 +17,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Background" Value="{x:Null}"/>
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
-            <Setter Property="Foreground" Value="{x:Null}"/>
             <Setter Property="Cursor" Value="Hand" />
         </Style>
     </Page.Resources>
@@ -39,26 +36,26 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="1" Name="EPSI_button" Click="EPSI_button_Click">
-            <Image Name="EPSI" />
+        <Button Grid.Column="0" Grid.Row="1" Name="EPSI_button" Click="EPSI_button_Click" MouseEnter="EPSI_button_MouseEnter" MouseLeave="EPSI_button_MouseLeave" Background="#993c84" BorderBrush="#FFA751C7">
+            <Label x:Name="epsi" Content="EPSI" />
         </Button>
-        <Button Grid.Column="1" Grid.Row="1" Name="IDRAC_button" Click="IDRAC_button_Click">
-            <Image Name="IDRAC"/>
+        <Button Grid.Column="1" Grid.Row="1" Name="IDRAC_button" Click="IDRAC_button_Click" MouseEnter="IDRAC_button_MouseEnter" MouseLeave="IDRAC_button_MouseLeave" Background="#ce181e">
+            <Label x:Name="idrac" Content="IDRAC" />
         </Button>
-        <Button Grid.Column="0" Grid.Row="3" Name="IFAG_button" Click="IFAG_button_Click">
-            <Image Name="IFAG"/>
+        <Button Grid.Column="0" Grid.Row="3" Name="IFAG_button" Click="IFAG_button_Click" MouseEnter="IFAG_button_MouseEnter" MouseLeave="IFAG_button_MouseLeave" Background="Black">
+            <Label x:Name="ifag" Content="IFAG" Foreground="White" />
         </Button>
-        <Button Grid.Column="1" Grid.Row="3" Name="IGEFI_button" Click="IGEFI_button_Click">
-            <Image Name="IGEFI"/>
+        <Button Grid.Column="1" Grid.Row="3" Name="IGEFI_button" Click="IGEFI_button_Click" MouseEnter="IGEFI_button_MouseEnter" MouseLeave="IGEFI_button_MouseLeave" Background="#441E2B">
+            <Label x:Name="igefi" Content="IGEFI" Foreground="White" />
         </Button>
-        <Button Grid.Column="0" Grid.Row="5" Name="OSS_button" Click="OSS_button_Click">
-            <Image Name="OSS"/>
+        <Button Grid.Column="0" Grid.Row="5" Name="OSS_button" Click="OSS_button_Click" MouseEnter="OSS_button_MouseEnter" MouseLeave="OSS_button_MouseLeave" Background="#a58d45">
+            <Label x:Name="oss" Content="Open Source School" />
         </Button>
-        <Button Grid.Column="1" Grid.Row="5" Name="SUP_button" Click="SUP_button_Click">
-            <Image Name="SUP"/>
+        <Button Grid.Column="1" Grid.Row="5" Name="SUP_button" Click="SUP_button_Click" MouseEnter="SUP_button_MouseEnter" MouseLeave="SUP_button_MouseLeave" Background="#004A93">
+            <Label x:Name="sup" Content="SUP de COM" />
         </Button>
-        <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Name="WIS_button" Click="WIS_button_Click">
-            <Image Name="WIS"/>
+        <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Name="WIS_button" Click="WIS_button_Click" MouseEnter="WIS_button_MouseEnter" MouseLeave="WIS_button_MouseLeave" Background="#FFD1C107" Foreground="#FF912D2D">
+            <Label x:Name="wis" Content="WIS" Foreground="Black" />
         </Button>
     </Grid>
 </Page>
