@@ -137,5 +137,11 @@
   <ItemGroup>
     <Resource Include="igefi.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="epsi-logo-hd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="igefi.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

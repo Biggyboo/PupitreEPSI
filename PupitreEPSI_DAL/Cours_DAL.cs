@@ -11,10 +11,12 @@ namespace PupitreEPSI_DAL
     {
         public static List<Cours_BO> GetCours()
         {
-            using (var context = new Workshop4Entities)
+            using (var context = new Workshop4Entities())
             {
                 List<Cour> ListCours = context.Cours.ToList();
-                List<Cours_BO> ListCoursBO = listCours.TolistCoursBO();
+                List<Cours_BO> ListCoursBO = ListCours.TolistCours();
+
+                return ListCoursBO;
             }
         }
     }

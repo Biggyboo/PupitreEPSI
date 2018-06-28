@@ -9,7 +9,7 @@ namespace PupitreEPSI_DAL
 {
     public static class Extension
     {
-        public static List<Cours_BO> ToListlistCours(this List<Cour> list)
+        public static List<Cours_BO> TolistCours(this List<Cour> list)
         {
             if(list == null)
             {
